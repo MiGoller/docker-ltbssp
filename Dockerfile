@@ -35,7 +35,7 @@ RUN cp -R -f master_temp/* .
 RUN rm -rf $distro master_temp
 
 # Create directory for LTBSSP script files
-RUN mkdir -P /usr/share/self-service-password
+RUN mkdir -p /usr/share/self-service-password
 
 # Add customization files for custom docker images.
 ADD ./customization/conf ./conf
