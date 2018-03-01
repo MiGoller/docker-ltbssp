@@ -1,0 +1,7 @@
+
+.DS_Store
+.vagrant
+.vscode
+buildimage*.sh
+runcontainer*.sh
+config

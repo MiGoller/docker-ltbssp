@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  docker-ltbssp:
+    image: docker-ltbssp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
