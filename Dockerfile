@@ -10,9 +10,9 @@ RUN apt-get -y update && apt-get install -y \
     git \
     libmcrypt-dev \
     libldap2-dev \
-    sendmail
-
-RUN apt-get clean
+    sendmail \
+    libapache2-mod-rpaf \
+    && apt-get clean
 
 # Install the PHP mcrypt extention
 RUN pecl install mcrypt-1.0.1 && \
@@ -42,6 +42,12 @@ ADD ./customization/conf ./conf
 ADD ./customization/css ./css
 ADD ./customization/images ./images
 ADD ./customization/scripts /usr/share/self-service-password
+
+# Replace Apache's 000-default.conf to support reverse proxies by customized logging
+COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Replace Apache's mod-rpaf configuration for transparent reverse proxy support
+COPY ./rpaf.conf /etc/apache2/mods-available/rpaf.conf
 
 # Define the exposed ports
 EXPOSE 80
